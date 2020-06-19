@@ -29,11 +29,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="item1Decrement" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="quantity1" type="text" class="form-control text-center" value="1">
-                           <button id="item1Increment" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="dencrement1" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="itemquantity1" type="text" class="form-control text-center" value="1">
+                           <button onclick="" id="Increment1" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="price1">500</span></h5>
+                        <h5>$ <span id="item1">500</span></h5>
                         <img id="icon1" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -47,12 +47,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="item2Decrement" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="quantity2" type="text" class="form-control text-center" value="1">
-                           <button id="item2Increment" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="decrement2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="itemquantity2" type="text" class="form-control text-center" value="1">
+                           <button id="increment2" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="price2">50</span></h5>
+                        <h5>$ <span id="item2">50</span></h5>
                         <img id="icon2" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -82,7 +82,91 @@
       </div>
    </section>
 
-   <script src="script.js"></script>
+   <!-- <script src="script.js"></script> -->
+   <script>
+      //increment process
+       const plusbtn = document.getElementById('Increment1')
+       plusbtn.addEventListener("click", function(){
+
+         inceseAndDecreseValue("itemquantity1", +1);
+         Pricing("item1",500)
+         totalAmount("subtotal",500)
+       
+       });
+
+     //sub total amount
+      function totalAmount(id,price){
+         const totalnumberPrice= document.getElementById(id).innerText;
+         const incermentPrice = parseFloat(totalnumberPrice)
+         
+         const totalPhonePrice = incermentPrice + price;
+         document.getElementById(id).innerText=totalPhonePrice;
+
+
+          const texAmount=  document.getElementById("tax").innerText;
+          const totalTex =parseFloat(texAmount);
+          const totalTexPrice= totalPhonePrice *.15 ;
+          
+          document.getElementById("tax").innerText=totalTexPrice;
+
+          const subtotal=totalPhonePrice+totalTexPrice
+           document.getElementById("total").innerText=subtotal;
+        
+         
+       }
+     // increment functionality
+       function inceseAndDecreseValue(id, value){
+         const plusIncrease = document.getElementById(id).value;
+          const plusNumber = parseFloat(plusIncrease);
+          const total = plusNumber + value ;
+          document.getElementById(id).value =total;
+       }    
+
+       //i phone price
+       function Pricing(id ,price){
+         const increasePrice = document.getElementById(id).innerText;
+          const increaseNUmber = parseFloat(increasePrice) 
+          const totalPrice= increaseNUmber + price;
+
+          
+         document.getElementById(id).innerText=totalPrice
+           
+       }
+
+       //decrement process 
+       const minusBtn = document.getElementById('dencrement1')
+       minusBtn.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity1",-1)
+         Pricing("item1",-500)
+         totalAmount("subtotal",-500)
+
+          
+       })
+
+     
+       // for iphone cover increment
+       const plusbtn2 = document.getElementById('increment2')
+       plusbtn2.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity2",+1)
+         Pricing("item2",50)
+         totalAmount("subtotal",50)
+
+       })
+
+          // for iphone cover dencrement
+
+       const minusBtn2 = document.getElementById('decrement2')
+       minusBtn2.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity2",-1)
+         Pricing("item2",-50)
+         totalAmount("subtotal",-50)
+
+       })
+
+
+
+       
+   </script>
 </body>
 
 </html>
